@@ -16,6 +16,7 @@ namespace Group4API.Models
 
         [Required (ErrorMessage = "Job ID is required")]
         public int JobId { get; set; }
-        //public List<Employee> EmployeeIds { get; set; }
+        
+        public List<Employee> Employees = new List<Employee>();
     }
 }
