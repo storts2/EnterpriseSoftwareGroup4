@@ -1,9 +1,12 @@
 ﻿// Made by Nabeel
 
+using System.ComponentModel.DataAnnotations;
+
 namespace Group4API.Models
 {
     public class Material
     {
+        [Key]
         public int MaterialID { get; set; }
 
         public string Name { get; set; }

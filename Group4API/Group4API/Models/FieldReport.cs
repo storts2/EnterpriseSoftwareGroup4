@@ -1,11 +1,13 @@
 ﻿// Made by Nabeel
 
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.ComponentModel.DataAnnotations;
 
 namespace Group4API.Models
 {
     public class FieldReport
     {
+        [Key]
         public int ReportID { get; set; }
 
         public DateOnly Date { get; set; }
@@ -14,8 +16,6 @@ namespace Group4API.Models
 
         public bool QuotaComplete { get; set; }
 
-        public Employee employeeID { get; set; }
-
-        public Employee employee { get; set; }
+        public Employee EmployeeID { get; set; }
     }
 }

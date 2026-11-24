@@ -12,7 +12,7 @@ namespace Group4API.DataAccessLayer
 
         public DbSet<Employee> Employees { get; set; }
 
-        public DbSet<FieldReport> FieldReports {  get; set; }
+        public DbSet<FieldReport> FieldReport {  get; set; }
 
         public DbSet<Job> Jobs { get; set; }
 
