@@ -8,8 +8,8 @@ public class Job
     [Key]
     public int JobId { get; set; }
     public int ClientId { get; set; }
-    public List<int> MaterialIds { get; set; } = new List<int>();
-    public List<int> ToolIds { get; set; } = new List<int>();
-    public List<int> VehicleIds { get; set; } = new List<int>();
+    public List<Material> Material { get; set; } = new List<Material>();
+    public List<Tools> Tool { get; set; } = new List<Tools>();
+    public List<Vehicle> Vehicle { get; set; } = new List<Vehicle>();
     public string? JobType { get; set; }
 }
