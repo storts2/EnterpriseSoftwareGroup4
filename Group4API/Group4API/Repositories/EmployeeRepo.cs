@@ -4,7 +4,7 @@ using Group4API.Models;
 namespace Group4API.Repositories;
 
 // Made by Matthew
-public class EmployeeRepo : IEmployeeRepos
+public class EmployeeRepo : IEmployeeRepo
 {
     private readonly JobManagementDbContext _context;
 
@@ -31,13 +31,14 @@ public class EmployeeRepo : IEmployeeRepos
         return employee;
     }
 
-    public void DeleteEmployee(int id)
+    public void DeleteEmployeeById(int id)
     {
         Employee deletedEmployee = GetEmployeeById(id);
 
         if (deletedEmployee != null) 
         { 
             _context.Employees.Remove(deletedEmployee);
+            _context.SaveChanges();
         }
     }
 }

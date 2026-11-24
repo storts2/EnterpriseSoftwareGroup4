@@ -3,7 +3,7 @@
 namespace Group4API.Repositories;
 
 // Made by Matthew
-public interface IEmployeeRepos
+public interface IEmployeeRepo
 {
     IEnumerable<Employee> GetAllEmployees();
 
@@ -11,5 +11,5 @@ public interface IEmployeeRepos
 
     Employee AddEmployee(Employee employee);
 
-    void DeleteEmployee(int id);
+    void DeleteEmployeeById(int id);
 }
