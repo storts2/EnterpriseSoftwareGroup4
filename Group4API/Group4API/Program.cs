@@ -1,5 +1,6 @@
 
 using Group4API.DataAccessLayer;
+using Group4API.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace Group4API;
@@ -13,6 +14,9 @@ public class Program
         // Add services to the container.
         builder.Services.AddDbContext<JobManagementDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+        builder.Services.AddScoped<IEmployeeRepo, EmployeeRepo>();
+        builder.Services.AddScoped<IJobRepo, JobRepo>();
 
         builder.Services.AddControllers();
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
