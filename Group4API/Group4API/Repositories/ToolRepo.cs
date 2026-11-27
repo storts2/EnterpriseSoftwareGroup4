@@ -1,32 +1,34 @@
 ﻿//Made by Haseeb
 using Group4API.DataAccessLayer;
 using Group4API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Group4API.Repositories
 {
     public class ToolRepo : IToolRepo
     {
         private readonly JobManagementDbContext _context;
-        ToolRepo(JobManagementDbContext context)
+        public ToolRepo(JobManagementDbContext context)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
         public IEnumerable<Tools> GetAllTools()
         {
-            return _context.Tools;
+            return _context.Tools
+                .ToList();
         }
         public Tools GetToolById(int Id)
         {
             if (Id <= 0)
             {
-                throw new ArgumentOutOfRangeException("Id is invalid.\n");
+                throw new ArgumentOutOfRangeException(nameof(Id),"Tool Id is invalid.\n");
             }
             
             var toolById = _context.Tools.FirstOrDefault(t => t.ToolId == Id);
 
             if (toolById == null)
             {
-                throw new ArgumentNullException("Tool is not found.\n");
+                throw new KeyNotFoundException($"Tool with Id {Id} is not found.\n");
             }
 
             return toolById;
@@ -35,7 +37,7 @@ namespace Group4API.Repositories
         {
             if (tool == null)
             {
-                throw new ArgumentNullException("Tool information is invalid.\n");
+                throw new ArgumentNullException(nameof(tool), "Tool information is invalid.\n");
             }
 
             _context.Tools.Add(tool);
@@ -45,11 +47,6 @@ namespace Group4API.Repositories
         public void DeleteTool(int Id)
         {
             var toolById = GetToolById(Id);
-            if (toolById == null)
-            {
-                throw new ArgumentNullException("Tool is not found.\n");
-            }
-
             _context.Tools.Remove(toolById);
             _context.SaveChanges();
         }
